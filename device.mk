@@ -39,9 +39,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
     $(DEVICE_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml
 
-# FM
-BOARD_HAVE_QCOM_FM := true
-
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
@@ -80,3 +77,15 @@ PRODUCT_PACKAGES += \
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/whyred/whyred-vendor.mk)
+
+# OpenGapps
+GAPPS_VARIANT := pico
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+GAPPS_PRODUCT_PACKAGES += CalendarGooglePrebuilt
+GAPPS_PRODUCT_PACKAGES += LatinImeGoogle
+GAPPS_PRODUCT_PACKAGES += Maps
+GAPPS_PRODUCT_PACKAGES += PrebuiltGmail
+GAPPS_PRODUCT_PACKAGES += YouTube
+GAPPS_EXCLUDED_PACKAGES := GoogleTTS
+
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
